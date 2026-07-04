@@ -6,8 +6,8 @@
     "name": "Jamin Zhou",
     "url": "https://github.com/JaminZhou"
   },
-  "homepage": "https://github.com/JaminZhou/claude-plugins/tree/main/plugins/watch-pr",
-  "repository": "https://github.com/JaminZhou/claude-plugins",
+  "homepage": "https://github.com/JaminZhou/agent-plugins/tree/main/plugins/watch-pr",
+  "repository": "https://github.com/JaminZhou/agent-plugins",
   "keywords": [
     "github",
     "pull-request",

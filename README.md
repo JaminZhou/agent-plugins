@@ -1,4 +1,4 @@
-# claude-plugins
+# agent-plugins
 
 Claude Code plugins by [@JaminZhou](https://github.com/JaminZhou).
 
@@ -7,8 +7,8 @@ Claude Code plugins by [@JaminZhou](https://github.com/JaminZhou).
 ### Claude Code
 
 ```
-/plugin marketplace add JaminZhou/claude-plugins
-/plugin install watch-pr@jamin-plugins
+/plugin marketplace add JaminZhou/agent-plugins
+/plugin install watch-pr@agent-plugins
 ```
 
 ### Codex
@@ -16,7 +16,7 @@ Claude Code plugins by [@JaminZhou](https://github.com/JaminZhou).
 Add this repository as a Codex plugin marketplace:
 
 ```bash
-codex plugin marketplace add JaminZhou/claude-plugins
+codex plugin marketplace add JaminZhou/agent-plugins
 codex
 ```
 
@@ -32,7 +32,7 @@ package, install the skill directly:
 ```bash
 mkdir -p ~/.agents/skills/watch-pr
 curl -fsSL \
-  https://raw.githubusercontent.com/JaminZhou/claude-plugins/main/plugins/watch-pr/skills/watch-pr/SKILL.md \
+  https://raw.githubusercontent.com/JaminZhou/agent-plugins/main/plugins/watch-pr/skills/watch-pr/SKILL.md \
   -o ~/.agents/skills/watch-pr/SKILL.md
 ```
 
