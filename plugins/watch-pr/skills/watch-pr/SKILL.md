@@ -16,12 +16,14 @@ anything else that supports Agent Skills.
 ## How Codex review behaves (empirical)
 
 - Codex is enabled repo-side (chatgpt.com/codex cloud settings) and reviews
-  **every push** to an open PR: a `COMMENTED` review lands roughly **4–7
-  minutes after each push**, its body contains `**Reviewed commit:** \`<sha>\``.
-- A clean round is a review of the head commit with **no inline comments** —
-  NOT the absence of a review.
-- A push merged before its review lands never gets reviewed — don't merge
-  until the head commit's review has arrived, unless the user says merge now.
+  pushes to an open PR: a `COMMENTED` review lands roughly **4–7 minutes
+  after a push**, its body contains `**Reviewed commit:** \`<sha>\``.
+- **If a round finds nothing, Codex posts nothing at all** — no review, no
+  comment. So the clean signal is: all prior findings fixed and resolved +
+  no new review within ~2× the usual window (~15 min of silence). A review
+  with zero inline comments is also clean.
+- Don't merge inside the usual review window right after a push (its review
+  may be in flight); past ~15 min of silence, treat the round as clean.
 - Findings carry P1/P2/P3 badges. The bot is strong on mechanical reasoning
   (constraint math, edge cases, dead paths): treat findings as probably right,
   verify before fixing, and when one is wrong, reject it with a code comment
