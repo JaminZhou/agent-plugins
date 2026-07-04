@@ -9,6 +9,10 @@ Drive a PR through automated bot review rounds until a round comes back clean.
 Written for OpenAI's Codex GitHub reviewer (`chatgpt-codex-connector[bot]`);
 the loop works for any bot that reviews on push — adjust the login name.
 
+Agent-portable: every step is plain `gh` CLI + shell, no harness-specific
+tools. Works the same whether the agent running it is Claude Code, Codex, or
+anything else that supports Agent Skills.
+
 ## How Codex review behaves (empirical)
 
 - Codex is enabled repo-side (chatgpt.com/codex cloud settings) and reviews
@@ -27,10 +31,11 @@ the loop works for any bot that reviews on push — adjust the login name.
 
 1. Identify the PR: `gh pr view --json number,headRefOid` on the current
    branch, or take the PR number from the user.
-2. **Wait for the review of HEAD in the background** — never block the
-   session polling in the foreground. Write a small script that polls every
+2. **Wait for the review of HEAD.** Write a small script that polls every
    30s (20 min timeout) for a bot review whose body contains the head SHA
-   prefix, run it in the background, and continue when it exits:
+   prefix. If your harness supports background tasks (e.g. Claude Code's
+   background Bash — you are re-invoked when it exits), run it there so the
+   session stays free; otherwise just run it in the foreground and wait:
    ```bash
    gh api repos/<owner>/<repo>/pulls/<N>/reviews \
      --jq '[.[] | select(.user.login == "chatgpt-codex-connector[bot]")
