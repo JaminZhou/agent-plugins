@@ -1,6 +1,6 @@
 # agent-plugins
 
-Claude Code plugins by [@JaminZhou](https://github.com/JaminZhou).
+Agent plugins for Claude Code and Codex by [@JaminZhou](https://github.com/JaminZhou).
 
 ## Install
 
@@ -20,7 +20,7 @@ codex plugin marketplace add JaminZhou/agent-plugins
 codex
 ```
 
-Then open `/plugins`, switch to the `Jamin Plugins` marketplace, and install
+Then open `/plugins`, switch to the `JaminZhou Plugins` marketplace, and install
 `watch-pr`. Start a new Codex thread after installing, then ask Codex to use
 `watch-pr` on the target PR.
 

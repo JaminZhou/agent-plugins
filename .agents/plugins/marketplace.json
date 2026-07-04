@@ -1,7 +1,7 @@
 {
-  "name": "jamin-plugins",
+  "name": "agent-plugins",
   "interface": {
-    "displayName": "Jamin Plugins"
+    "displayName": "JaminZhou Plugins"
   },
   "plugins": [
     {
