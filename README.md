@@ -4,9 +4,36 @@ Claude Code plugins by [@JaminZhou](https://github.com/JaminZhou).
 
 ## Install
 
+### Claude Code
+
 ```
 /plugin marketplace add JaminZhou/claude-plugins
 /plugin install watch-pr@jamin-plugins
+```
+
+### Codex
+
+Add this repository as a Codex plugin marketplace:
+
+```bash
+codex plugin marketplace add JaminZhou/claude-plugins
+codex
+```
+
+Then open `/plugins`, switch to the `Jamin Plugins` marketplace, and install
+`watch-pr`. Start a new Codex thread after installing, then ask Codex to use
+`watch-pr` on the target PR.
+
+### Codex skill-only fallback
+
+If you only want the workflow instructions without installing the Codex plugin
+package, install the skill directly:
+
+```bash
+mkdir -p ~/.agents/skills/watch-pr
+curl -fsSL \
+  https://raw.githubusercontent.com/JaminZhou/claude-plugins/main/plugins/watch-pr/skills/watch-pr/SKILL.md \
+  -o ~/.agents/skills/watch-pr/SKILL.md
 ```
 
 ## Plugins

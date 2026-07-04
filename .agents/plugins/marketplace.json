@@ -1,0 +1,20 @@
+{
+  "name": "jamin-plugins",
+  "interface": {
+    "displayName": "Jamin Plugins"
+  },
+  "plugins": [
+    {
+      "name": "watch-pr",
+      "source": {
+        "source": "local",
+        "path": "./plugins/watch-pr"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

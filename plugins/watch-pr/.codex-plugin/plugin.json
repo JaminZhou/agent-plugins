@@ -1,0 +1,34 @@
+{
+  "name": "watch-pr",
+  "version": "0.1.0",
+  "description": "Watch a PR for bot review rounds and drive each round to resolution until a clean round.",
+  "author": {
+    "name": "Jamin Zhou",
+    "url": "https://github.com/JaminZhou"
+  },
+  "homepage": "https://github.com/JaminZhou/claude-plugins/tree/main/plugins/watch-pr",
+  "repository": "https://github.com/JaminZhou/claude-plugins",
+  "keywords": [
+    "github",
+    "pull-request",
+    "codex",
+    "review"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Watch PR",
+    "shortDescription": "Drive GitHub bot review rounds to a clean pass.",
+    "longDescription": "Watch PR packages a Codex workflow for GitHub bot review loops: wait for the head-commit review, verify findings, fix or reject them with rationale, push, reply, resolve bot threads, and repeat until the latest review is clean.",
+    "developerName": "Jamin Zhou",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use watch-pr to handle bot review comments on this PR.",
+      "Watch this PR until the Codex bot review is clean."
+    ],
+    "brandColor": "#1F6FEB"
+  }
+}
