@@ -1,7 +1,7 @@
 {
   "name": "watch-pr",
   "description": "Watch a PR for bot review rounds (Codex etc.) and drive each round to resolution — fix, push, reply, resolve threads, re-watch — until a clean round.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "Jamin Zhou"
   }

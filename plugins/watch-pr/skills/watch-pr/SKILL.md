@@ -52,6 +52,10 @@ anything else that supports Agent Skills.
    ```
    Exit on either: review → handle findings; fresh +1 → clean round, report
    ready-to-merge.
+   `<last-push-iso8601>` is when you PUSHED, not the commit time (they can
+   differ) — capture `date -u +%FT%TZ` right after `git push`, or use the
+   head commit's `%cI` only when you commit-and-push in one breath.
+
 3. When the review lands, fetch its inline comments
    (`gh api repos/<owner>/<repo>/pulls/<N>/comments`), filter to the bot, and
    cross-check unresolved threads via GraphQL `reviewThreads`.
