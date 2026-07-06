@@ -35,16 +35,16 @@ anything else that supports Agent Skills.
 
 1. Identify the PR: `gh pr view --json number,headRefOid` on the current
    branch, or take the PR number from the user.
-2. **Wait for the review of HEAD.** Write a small script that polls every
-   30s (20 min timeout) for a bot review whose body contains the head SHA
-   prefix. If your harness supports background tasks (e.g. Claude Code's
-   background Bash — you are re-invoked when it exits), run it there so the
-   session stays free; otherwise just run it in the foreground and wait:
-   Poll BOTH signals — a head review (findings) and a fresh +1 (clean):
+2. **Wait for the review of your push.** Write a small script that polls every
+   30s (20 min timeout). If your harness supports background tasks (e.g. Claude
+   Code's background Bash — you are re-invoked when it exits), run it there so
+   the session stays free; otherwise just run it in the foreground and wait.
+   Poll BOTH signals — a review (findings) and a fresh +1 (clean) — keyed on
+   `submitted_at`/`created_at` LATER than your push, NOT on the head SHA:
    ```bash
    gh api repos/<owner>/<repo>/pulls/<N>/reviews \
      --jq '[.[] | select(.user.login == "chatgpt-codex-connector[bot]")
-            | select(.body | contains("<head-sha-10>"))] | length'
+            | select(.submitted_at > "<last-push-iso8601>")] | length'
    gh api repos/<owner>/<repo>/issues/<N>/reactions \
      --jq '[.[] | select(.user.login == "chatgpt-codex-connector[bot]")
             | select(.content == "+1")
@@ -52,6 +52,10 @@ anything else that supports Agent Skills.
    ```
    Exit on either: review → handle findings; fresh +1 → clean round, report
    ready-to-merge.
+   DO NOT key the review test on "body contains the head SHA": if you
+   amend/force-push, the bot may review the pre-amend (now-orphaned) commit,
+   whose SHA won't match your new head — the review is real but the watcher
+   goes blind and times out. `submitted_at > push` survives force-push.
    `<last-push-iso8601>` is when you PUSHED, not the commit time (they can
    differ) — capture `date -u +%FT%TZ` right after `git push`, or use the
    head commit's `%cI` only when you commit-and-push in one breath.
